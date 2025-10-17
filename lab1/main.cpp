@@ -8,8 +8,8 @@ using namespace std;
 
 int main() {
     string filename;
-    cout << "Enter filename: ";
-    getline(std::cin, filename);
+    cout << "Введите название файла: ";
+    getline(cin, filename);
 
     // pipe1 parent -> child для передачи строк
     // pipe2 child -> parent для передачи ошибок
@@ -30,7 +30,7 @@ int main() {
     if (pid == 0) {
         int file_fd = open(filename.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
         if (file_fd == -1) {
-            perror("Failed to open file in child");
+            perror("Неудалось открыть дочерний процесс");
             _exit(1);
         }
 
@@ -55,8 +55,8 @@ int main() {
         close(pipe2[1]); // не пишет в pipe2
 
         string line;
-        cout << "Enter lines (or 'exit' to finish):\n";
-        while (getline(std::cin, line) && line != "exit") {
+        cout << "Введите строку или exit для завершения:\n";
+        while (getline(cin, line) && line != "exit") {
             line += '\n';
             write(pipe1[1], line.c_str(), line.size());
         }
