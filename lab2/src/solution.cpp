@@ -30,10 +30,10 @@ double calculate_distance(const Point& p1, const Point& p2) {
 KMeans::KMeans(int k, int max_threads, const vector<Point>& data)
     : k(k), max_threads(max_threads), points(data) {
     
-    if (k <= 0) throw runtime_error("K must be greater than 0");
-    if (max_threads <= 0) throw runtime_error("Max threads must be greater than 0");
-    if (points.empty()) throw runtime_error("Data points cannot be empty");
-    if (k > points.size()) throw runtime_error("K cannot be greater than number of points");
+    if (k <= 0) throw runtime_error("К должно быть больше нуля");
+    if (max_threads <= 0) throw runtime_error("Количество потоков должно быть больше нуля");
+    if (points.empty()) throw runtime_error("Количество точек должно быть больше нуля");
+    if (k > points.size()) throw runtime_error("Количество кластеров не может быть больше кол-ва точек");
 
     assignments.resize(points.size());
     centroids.resize(k);
@@ -167,10 +167,10 @@ void KMeans::run(int max_iterations) {
             change += calculate_distance(old_centroids[c], centroids[c]);
         }
         
-        cout << "Iteration " << i << ", Change: " << change << endl;
+        cout << "Итерация " << i << ", Изменение: " << change << endl;
         
         if (change < 1e-5) {
-            cout << "Converged after " << i << " iterations." << endl;
+            cout << "Изменили после " << i << " итераций." << endl;
             break;
         }
     }
