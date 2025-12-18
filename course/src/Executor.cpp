@@ -13,11 +13,11 @@ void Executor::worker_thread(std::string job_id) {
     active_jobs_count_--;
 
     if (ret_code != 0) {
-        std::cerr << "Job " << job_id << " failed!\n";
+        std::cerr << "Job " << job_id << " провалена!\n";
         error_occurred_ = true;
         job.state = JobState::FAILED;
     } else {
-        std::cout << "Job " << job_id << " finished.\n";
+        std::cout << "Job " << job_id << " закончена.\n";
         job.state = JobState::COMPLETED;
         
         for (const auto& child_id : job.children) {

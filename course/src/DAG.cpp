@@ -35,8 +35,8 @@ void DAG::load(const std::string& filename) {
 }
 
 void DAG::validate() {
-    check_start_end_nodes();
     check_cycles();
+    check_start_end_nodes();
     check_connectivity();
     std::cout << "[DAG] Validation passed.\n";
 }

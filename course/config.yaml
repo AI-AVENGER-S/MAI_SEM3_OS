@@ -2,13 +2,7 @@ max_concurrent: 2
 jobs:
   - id: "job_A"
     cmd: "echo Start A; sleep 1"
-    depends_on: []
+    depends_on: ["job_B"]
   - id: "job_B"
     cmd: "echo Start B; sleep 2"
     depends_on: ["job_A"]
-  - id: "job_C"
-    cmd: "echo Start C; sleep 1"
-    depends_on: ["job_A"]
-  - id: "job_D"
-    cmd: "echo Finish D"
-    depends_on: ["job_B", "job_C"]
